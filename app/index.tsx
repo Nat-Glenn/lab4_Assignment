@@ -1,9 +1,7 @@
-// app/index.tsx
-import React from 'react';
+import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native';
-import ToDoList from './ToDoList';
 import ToDoForm from './ToDoForm';
-import { useState } from 'react';
+import ToDoList from './ToDoList';
 
 export default function Index() {
 

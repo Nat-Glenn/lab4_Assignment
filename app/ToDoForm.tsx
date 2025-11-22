@@ -1,17 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, TextInput, Button, StyleSheet } from 'react-native';
 
-const ToDoForm = () => {
+export interface ToDoFormProps {
+  addTask: (task: string) => void;
+}
+
+const ToDoForm: React.FC<ToDoFormProps> = ({ addTask }) => {
+  const [taskText, setTaskText] = useState<string>('');
+
+  const handleAddPress = (): void => {
+    const trimmed = taskText.trim();
+    if (!trimmed) return;
+    addTask(trimmed);
+    setTaskText('');
+  };
+
   return (
     <View style={styles.form}>
       <TextInput
         style={styles.input}
         placeholder="Add a new task..."
+        value={taskText}
+        onChangeText={setTaskText}
       />
-      <Button title="Add" onPress={() => {}} />
+      <Button title="Add Task" onPress={handleAddPress} />
     </View>
   );
 };
+
+export default ToDoForm;
 
 const styles = StyleSheet.create({
   form: {
@@ -30,5 +47,3 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
 });
-
-export default ToDoForm;
